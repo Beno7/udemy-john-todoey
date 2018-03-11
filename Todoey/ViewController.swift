@@ -10,17 +10,40 @@ import UIKit
 
 class TodoListViewController: UITableViewController {
     
-    var itemArray = ["Kill Giant", "Go to High Monks", "What the hell is a High Monk???"]
-    var isChecked:[String] = []
+    var itemArray = [Item]()
+    
+    let arrayKey = "todoListItemArray"
     
     let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        if let items = defaults.array(forKey: "TodoListArray") as? [String]{
+        if let items = defaults.array(forKey: arrayKey) as? [Item]{
             self.itemArray = items
         }
+        itemArray.append(Item(item: "find mike", isDone: false))
+        itemArray.append(Item(item: "kill demigod", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
+        itemArray.append(Item(item: "eat food", isDone: false))
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,25 +60,25 @@ class TodoListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = itemArray[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "TodoItemCell")!
-        cell.textLabel?.text = itemArray[indexPath.row]
-        if isChecked.contains(String(indexPath.row)){
+        cell.textLabel?.text = item.item
+        cell.accessoryType = item.isDone == true ? .checkmark : .none
+        /*if itemArray[indexPath.row].isDone == true{
             cell.accessoryType = .checkmark
         } else{
             cell.accessoryType = .none
-        }
+        }*/
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(itemArray[indexPath.row])
-        if !isChecked.contains(String(indexPath.row)){
-            isChecked.append(String(indexPath.row))
+        if itemArray[indexPath.row].isDone == false{
+            itemArray[indexPath.row].isDone = true
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         } else{
-            if let i = isChecked.index(of: String(indexPath.row)){
-                isChecked.remove(at: i)
-            }
+            itemArray[indexPath.row].isDone = false
             tableView.cellForRow(at: indexPath)?.accessoryType = .none
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -73,8 +96,8 @@ class TodoListViewController: UITableViewController {
         let action = UIAlertAction(title: "Add Title", style: .default) { (action) in
             if let tf = textField{
                 if(tf.text!.count > 0){
-                    self.itemArray.append(tf.text!)
-                    self.defaults.set(self.itemArray, forKey:"TodoListArray")
+                    self.itemArray.append(Item(item: tf.text!, isDone: false))
+                    //self.defaults.set(self.itemArray, forKey:self.arrayKey)
                     self.tableView.reloadData()
                 }
             }
