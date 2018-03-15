@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Todoey/Controllers/CategoryViewController.swift"
-            timestampString = "542706817.9069591"
+            timestampString = "542824343.594584"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Todoey/Controllers/CategoryViewController.swift"
-            timestampString = "542706817.907064"
+            timestampString = "542824343.594691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
